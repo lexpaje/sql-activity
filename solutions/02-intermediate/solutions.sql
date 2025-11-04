@@ -1,4 +1,6 @@
 -- Intermediate SQL Exercise Solutions
+-- Note: These solutions are written for PostgreSQL.
+-- Some functions (AGE, string concatenation) may need adjustments for other databases.
 
 -- Exercise 1: INNER JOIN
 SELECT e.first_name, e.last_name, d.department_name

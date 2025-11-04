@@ -1,4 +1,7 @@
 -- Advanced SQL Exercise Solutions
+-- Note: These solutions are written for PostgreSQL.
+-- Some functions (DATE_TRUNC, AGE, PERCENTILE_CONT) may need adjustments for other databases.
+-- See documentation for MySQL/SQLite alternatives.
 
 -- Exercise 1: ROW_NUMBER
 SELECT 
@@ -74,8 +77,10 @@ INNER JOIN high_value_customers hv ON c.customer_id = hv.customer_id
 INNER JOIN frequent_customers fc ON c.customer_id = fc.customer_id;
 
 -- Exercise 7: Recursive CTE
+-- This query builds a hierarchical path from top-level managers down through all subordinates.
+-- It starts with employees who have no manager (base case), then recursively adds their reports.
 WITH RECURSIVE employee_hierarchy AS (
-    -- Base case: employees without managers
+    -- Base case: employees without managers (top of hierarchy)
     SELECT 
         employee_id,
         first_name,
@@ -88,7 +93,7 @@ WITH RECURSIVE employee_hierarchy AS (
     
     UNION ALL
     
-    -- Recursive case: employees with managers
+    -- Recursive case: employees with managers (subordinates at each level)
     SELECT 
         e.employee_id,
         e.first_name,
